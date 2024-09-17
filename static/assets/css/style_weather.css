@@ -1,0 +1,177 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+/* Color Variables */
+:root {
+    --primary-color: #2a9d8f; /* Green */
+    --secondary-color: #83ca92; /* Soft Pink */
+    --bg-color: #f4f6fc; /* Light Background */
+    --light-color: #ffffff;
+    --dark-color: #383838;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Body */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--dark-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin: auto;
+    background-color: var(--light-color);
+    padding: 30px;
+    border-radius: 40px;
+    box-shadow: 0px 8px 16px var(--shadow-color);
+}
+
+/* Header */
+h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 700;
+}
+
+/* Input and Button Styles */
+input[type="text"],
+input[type="number"],
+select,
+button {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+button:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 40px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Results and Status Styles */
+#location,
+#temperature,
+#humidity,
+#description,
+#soilMoisture,
+#irrigationStatus,
+#waterRequirement,
+#forecast {
+    margin: 12px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: var(--light-color);
+    font-size: 1em;
+    box-shadow: 0px 4px 8px var(--shadow-color);
+}
+
+#irrigationStatus {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Forecast Styles */
+#forecast {
+    background-color: #e6f9f0;
+    border: 1px solid #d4f1e2;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.forecast-day {
+    margin-bottom: 12px;
+    padding: 12px;
+    border: 1px solid #d4f1e2;
+    border-radius: 12px;
+    background-color: var(--light-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    button,
+    input[type="text"],
+    input[type="number"],
+    select {
+        font-size: 0.95em;
+    }
+
+    #forecast {
+        padding: 15px;
+    }
+
+    .forecast-day {
+        padding: 10px;
+    }
+}
+
+/* Animations */
+button:hover {
+    transition: background-color 0.3s ease;
+    background-color: var(--secondary-color);
+}
+
+/* Card-like Design for Inputs */
+input[type="text"],
+input[type="number"],
+select {
+    background-color: var(--light-color);
+    box-shadow: 0px 4px 8px var(--shadow-color);
+}
+
+/* Additional Shadow for Results */
+#location,
+#temperature,
+#humidity,
+#description,
+#soilMoisture {
+    box-shadow: 0px 4px 8px var(--shadow-color);
+}

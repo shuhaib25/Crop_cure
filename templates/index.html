@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>crop cure</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+<link href="{{ url_for('static', filename="assets/img/favicon.png")}}"  rel="icon">
+<link href="{{ url_for('static', filename="assets/img/apple-touch-icon.png")}}" rel="apple-touch-icon">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+<link href="{{ url_for('static', filename="assets/vendor/aos/aos.css")}}" rel="stylesheet">
+<link href="{{ url_for('static', filename="assets/vendor/bootstrap/css/bootstrap.min.css")}}" rel="stylesheet">
+<link href="{{ url_for('static', filename="assets/vendor/bootstrap-icons/bootstrap-icons.css")}}" rel="stylesheet">
+<link href="{{ url_for('static', filename="assets/vendor/boxicons/css/boxicons.min.css")}}" rel="stylesheet">
+<link href="{{ url_for('static', filename="assets/vendor/glightbox/css/glightbox.min.css")}}" rel="stylesheet">
+<link href="{{ url_for('static', filename="assets/vendor/remixicon/remixicon.css")}}" rel="stylesheet">
+<link href="{{ url_for('static', filename="assets/vendor/swiper/swiper-bundle.min.css")}}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+
+<link href="{{ url_for('static', filename="assets/css/style.css")}}" rel="stylesheet">
+
+ 
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+  <div class="container">
+    <div class="header-container d-flex align-items-center justify-content-between">
+      
+      <div class="logo d-flex align-items-center">
+        <a href="index.html"><img src="{{ url_for('static', filename="assets/img/logo.png")}}" alt="" class="img-fluid logo-img"></a>
+        <h1 class="ms-2 logo-text">&nbsp; Crop Cure</u></h1>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="getstarted scrollto" href="#"></a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div><!-- End Header Container -->
+  </div>
+</header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
+      <h1>Welcome to CropCure</h1>
+      <h2>Enhancing productivity, sustainability, and resilience</h2>
+      <a href="#aboutt" class="btn-get-started scrollto">Get Started</a>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+     <!-- ======= About Section ======= -->
+<section id="about" class="about">
+  <div class="container">
+    <div class="row content">
+      <div class="col-lg-12" data-aos="fade-down" data-aos-delay="50">
+        <div class="description-box">
+          <h2>About Our Crop Detection and Recommendation Tool</h2>
+          <p>
+            Welcome to our AI-driven Crop Disease Detection and Crop Suggestion Tool website. Our mission is to revolutionize agriculture, especially in developing countries like India, by leveraging advanced technology to empower farmers. Our tool uses cutting-edge image recognition technology to detect crop diseases early and accurately. By analyzing real-time weather data, we also provide tailored crop suggestions to optimize yields and productivity.
+          </p>
+        </div>
+      </div>
+      
+      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+        <div class="box">
+          <h3><i class="bi bi-camera-fill"></i> Crop Disease Detection</h3>
+          <p>Use our tool to detect crop diseases early and accurately. Upload a photo of your crop for immediate analysis.</p>
+          
+          <form method="post" enctype="multipart/form-data" class="d-flex align-items-center">
+            <!-- Choose File Button -->
+            <div class="file-input-container">
+              <input type="file" name="image" class="form-control-file" style="display: inline-block;" />
+            </div>
+          
+            <!-- Predict Button -->
+            <div class="ml-2">
+              <input type="submit" value="Predict" class="btn btn-success" />
+            </div>
+          </form>
+    
+          {% if image_path %}
+            <h2>Predicted Disease:</h2>
+            <img src="{{ image_path }}" alt="Uploaded Image" style="max-width: 500px;" />
+            <p>{{ model_prediction }}</p>
+          {% elif error %}
+            <p>{{ error }}</p>
+          {% endif %}
+        </div>
+      </div>
+      
+      <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left" data-aos-delay="200">
+        <div class="box">
+          <h3><i class="bi bi-graph-up"></i> Crop irrigation Recommendation</h3>
+          <p>
+            Our tool ensures you choose the irrigation recomentation based on weather and soil type to maximize your yield and sustainability.
+          </p>
+          <button class="btn btn-success" onclick="window.location.href='{{ url_for('weather') }}'">Check Now</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row content">
+      <div class="col-lg-12" data-aos="fade-right" data-aos-delay="100">
+        <div class="highlight-box">
+          <h2>Healthy Crops, Healthy Profits</h2>
+          <h3><b>CropCure - Your One-Stop Shop for Disease Detection & Personalized Crop Recommendations</b></h3>
+          <p>
+            At CropCure, we are committed to revolutionizing agriculture by providing farmers with the tools they need to succeed. Our platform combines cutting-edge AI technology with real-time data to offer precise disease diagnosis and tailored crop recommendations. We aim to enhance agricultural productivity, reduce crop losses, and promote sustainable farming practices. Join us in transforming the agricultural landscape and ensuring a prosperous future for farmers everywhere.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Cards Section -->
+    <div class="row">
+      <!-- How It Works Card -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">How It Works</h4>
+            <p class="card-text">Discover the seamless process of diagnosing crop diseases and receiving tailored crop recommendations through our intuitive platform. Simply upload a photo of your crop, and our AI will analyze it for signs of disease. Based on real-time weather data, you’ll receive the best crop recommendations.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Technology Card -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Technology</h4>
+            <p class="card-text">Explore the advanced AI and real-time data analytics that power CropCure. Our platform uses state-of-the-art image recognition technology to identify crop diseases with high accuracy. Coupled with real-time weather data, our system provides reliable recommendations to ensure optimal crop health and yield.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Impact Card -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Impact</h4>
+            <p class="card-text">Understand the transformative effects of CropCure on agricultural productivity, farmer livelihoods, and sustainable farming practices. By reducing crop losses and improving yields, CropCure helps farmers achieve greater financial stability and promotes more sustainable agricultural practices.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Additional Content Section -->
+    <div class="row content">
+      <div class="col-lg-12" data-aos="fade-right" data-aos-delay="100">
+        <div class="highlight-box">
+          <h2>Importance of Healthy Crops</h2>
+          <h3><b>The Significance of Healthy Crops and the Role of CropCure</b></h3>
+          <p>
+            Healthy crops are the backbone of sustainable agriculture and food security. Ensuring that crops are free from diseases not only boosts productivity but also improves the quality of produce. CropCure plays a vital role in this by providing farmers with accurate disease diagnosis and effective crop management strategies. Our mission is to empower farmers with knowledge and tools to maintain healthy crops, leading to better yields and more stable incomes.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Image Cards Section -->
+    <div class="row">
+      <!-- Image Card 1 -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="card">
+          <img src="{{ url_for('static', filename='assets/img/crops-growing-in-thailand.jpg') }}" class="card-img-top" alt="Healthy Crops">
+          <div class="card-body">
+            <h4 class="card-title">Healthy Crops</h4>
+            <p class="card-text">Healthy crops lead to better yields and quality produce, ensuring food security and farmer prosperity.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Image Card 2 -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="card">
+          <img src="{{ url_for('static', filename='assets/img/cropmonitoring.jpg') }}" class="card-img-top" alt="Crop Monitoring">
+          <div class="card-body">
+            <h4 class="card-title">Crop Monitoring</h4>
+            <p class="card-text">Regular monitoring and early disease detection are crucial for maintaining crop health and maximizing yield.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Image Card 3 -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="card">
+          <img src="{{ url_for('static', filename='assets/img/Sustainable-Agricultureresize.png') }}" class="card-img-top" alt="Sustainable Agriculture">
+          <div class="card-body">
+            <h4 class="card-title">Sustainable Agriculture</h4>
+            <p class="card-text">Implementing sustainable farming practices helps preserve the environment and ensures long-term agricultural success.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End About Section -->
+
+
+
+   <!-- ======= Why Us Section ======= -->
+<section id="why-us" class="why-us">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-right">
+        <div class="content">
+          <h3>Why Choose CropCure for your crop management needs?</h3>
+          <p>
+            At CropCure, we are committed to transforming agriculture with advanced AI technology. Our platform provides accurate disease detection and personalized crop recommendations based on real-time data. We prioritize farmer empowerment and sustainable farming practices.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-8 d-flex align-items-stretch">
+        <div class="icon-boxes d-flex flex-column justify-content-center">
+          <div class="row">
+            <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+              <div class="icon-box mt-4 mt-xl-0">
+                <i class="bx bx-receipt"></i>
+                <h4>Accurate Disease Detection</h4>
+                <p>Utilize advanced AI for precise diagnosis of crop diseases.</p>
+              </div>
+            </div>
+            <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
+              <div class="icon-box mt-4 mt-xl-0">
+                <i class="bx bx-cube-alt"></i>
+                <h4>Personalized Recommendations</h4>
+                <p>Receive tailored crop suggestions based on real-time weather data.</p>
+              </div>
+            </div>
+            <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+              <div class="icon-box mt-4 mt-xl-0">
+                <i class="bx bx-images"></i>
+                <h4>Promoting Sustainable Practices</h4>
+                <p>Support sustainable agriculture with our innovative farming solutions.</p>
+              </div>
+            </div>
+          </div>
+        </div><!-- End .content-->
+      </div>
+    </div>
+  </div>
+</section><!-- End Why Us Section -->
+
+
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta">
+      <div class="container">
+
+        <div class="text-center" data-aos="zoom-in">
+          <h3>Ready to Revolutionize Your Farming?</h3>
+          <p>Discover how CropCure can transform your agricultural practices with advanced AI-driven solutions. Take the next step towards optimizing your crop yields and sustainability.</p>
+          <a class="cta-btn" href="#contact">Contact Us</a>
+        </div>
+        
+
+      </div>
+    </section><!-- End Cta Section -->
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4" data-aos="fade-right">
+            <div class="section-title">
+              <h2>Contact CropCure</h2>
+              <p>Got questions or ready to get started with CropCure's advanced AI-driven crop management solutions?<br> Reach out to us today. <br> Our team is here to assist you in maximizing your crop yields and promoting sustainable farming practices.</p>
+              
+            </div>
+          </div>
+
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+            <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3912.649785921011!2d75.79834297452342!3d11.28713394956708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65f9f7c3f1e03%3A0x4189ebe78f081f54!2sMalaparamba%20junction!5e0!3m2!1sen!2sin!4v1720337293463!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"  frameborder="0" allowfullscreen></iframe>
+            <div class="info mt-4">
+              <i class="bi bi-geo-alt"></i>
+              <h4>Location:</h4>
+              <p>Calicut, Kerala, KL 673009</p>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 mt-4">
+                <div class="info">
+                  <i class="bi bi-envelope"></i>
+                  <h4>Email:</h4>
+                  <p>cropucure@hotmail.com</p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="info w-100 mt-4">
+                  <i class="bi bi-phone"></i>
+                  <h4>Call:</h4>
+                  <p>+91 9072794516</p>
+                </div>
+              </div>
+            </div>
+
+            <form id="submit-form" action="" method="post" role="form" class="php-email-form mt-4">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <!-- <div class="error-message"></div> -->
+                <!-- <div class="sent-messag">Your message has been sent. Thank you!</div> -->
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+            
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main>
+
+  <!-- ======= Footer ======= -->
+<footer id="footer">
+
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6 footer-contact">
+          <h3><b>CropCure</b></h3>
+          <p>
+            Calicut, KL 673009<br>
+            Kerala <br><br>
+            <strong>Email:</strong> cropcure@hotmail.com<br>
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="container d-md-flex py-4">
+    <div class="me-md-auto text-center text-md-start">
+      <div class="copyright">
+        &copy; Copyright <strong><span>CropCure</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </div>
+</footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ url_for('static', filename="assets/vendor/purecounter/purecounter_vanilla.js")}}"></script>
+  <script src="{{ url_for('static', filename="assets/vendor/aos/aos.js")}}"></script>
+  <script src="{{ url_for('static', filename="assets/vendor/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
+  <script src="{{ url_for('static', filename="assets/vendor/glightbox/js/glightbox.min.js")}}"></script>
+  <script src="{{ url_for('static', filename="assets/vendor/isotope-layout/isotope.pkgd.min.js")}}"></script>
+  <script src="{{ url_for('static', filename="assets/vendor/swiper/swiper-bundle.min.js")}}"></script>
+  <script src="{{ url_for('static', filename="assets/vendor/php-email-form/validate.js")}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{ url_for('static', filename="assets/js/main.js")}}"></script>
+
+  <script>
+    // Scroll to the about section if the scroll variable is set
+    document.addEventListener('DOMContentLoaded', function () {
+      const scrollTarget = "{{ scroll }}";
+      if (scrollTarget === "about") {
+        document.getElementById(scrollTarget).scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  </script>
+
+  <!-- Script for chat bot -->
+  <script>
+    window.watsonAssistantChatOptions = {
+      integrationID: "1c42d613-da01-4791-857c-193d1310c6b3", // The ID of this integration.
+      region: "au-syd", // The region your integration is hosted in.
+      serviceInstanceID: "86aede36-2bf4-43b0-ba6f-e6e8fbd158da", // The ID of your service instance.
+      onLoad: async (instance) => { await instance.render(); }
+    };
+    setTimeout(function(){
+      const t=document.createElement('script');
+      t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+      document.head.appendChild(t);
+    });
+  </script>
+
+  <!-- script for contact form submission -->
+  <script>
+    $("#submit-form").submit((e)=>{
+        e.preventDefault()
+        $.ajax({
+            url:"https://script.google.com/macros/s/AKfycbyIm8sXICnu3mocgRaodtxz12xBSWx5a4SnS34WB2mZi5JdjnaO-yUGetsySAM85WxFXA/exec",
+            data:$("#submit-form").serialize(),
+            method:"post",
+            success:function (response){
+                alert("Form submitted successfully")
+                window.location.reload()
+                //window.location.href="https://google.com"
+            },
+            error:function (err){
+                alert("Something Error")
+
+            }
+        })
+    })
+    </script>
+  
+</body>
+
+</html>
